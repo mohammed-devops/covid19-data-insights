@@ -8,12 +8,16 @@ def fetch_covid_testing_data(api_url, cutoff_date):
     print(f"\nFetching data from the API until the date {cutoff_date}. Please wait...")
     page = 1
     all_test_data = []
+
+    #Specify the paths to the Certificate and key files 
+    cert_file_path = '/path/to/certificate.pem'  # Update with the Cert file path
+    key_file_path = '/path/to/key.pem' # Update with the key file path
     
     # Retrieve data in chunks until no more data is available
     while True:
         params = {'$limit': 20000, '$offset': (page - 1) * 20000}  # Adjust limit as needed
         try:
-            response = requests.get(api_url, params=params, verify=False)
+            response = requests.get(api_url, params=params, cert=(cert_file_path, key_file_path))
             response.raise_for_status()  # Raise an error for bad responses
             page_data = response.json()
         except requests.exceptions.RequestException as e:
