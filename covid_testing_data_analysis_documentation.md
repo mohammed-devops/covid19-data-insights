@@ -12,7 +12,7 @@ This Python program is designed to fetch and analyze COVID-19 testing data from 
 
 4. Internet Connectivity: The program requires an active internet connection to fetch data from the API.
 
-5. Data Availability: The program is designed to analyze data available until the specified target date. If there is no data for a particular date or range, the calculations may return zero or default values.
+5. Data Availability: After May 3, 2024, the dataset and webpage will no longer be updated because hospitals are no longer required to report data. The program is designed to analyze data available until the specified target date. If there is no data for a particular date or range, the calculations may return zero or default values.
 
 ## Features
 1. Fetch Testing Data: The program retrieves COVID-19 testing data from the specified API in chunks, processing up to 20,000 records at a time until all relevant data is obtained.
