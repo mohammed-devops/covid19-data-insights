@@ -1,0 +1,14 @@
+Today's date is 2024-08-28
+Enter the target date in the format (YYYY-MM-DD): 2023-04-05
+Input Date is 2023-04-05
+
+Fetching data from the API until the date 2023-04-05. Please wait...
+
+Calculating the Total PCR Tests...
+
+Calculating the 7-Day Rolling Average of New Cases...
+
+Getting Top 10 States with the Highest Positivity Rates...
+Total PCR Tests: 631282316120
+7-Day Rolling Average of New Cases: [280005.71, 288987.57, 264715.14, 210753.0]
+Top 10 States with Highest Positivity Rate %: [('AL', nan), ('AK', nan), ('AZ', nan), ('AR', nan), ('CA', nan), ('CO', nan), ('CT', nan), ('DE', nan), ('DC', nan), ('FL', nan)]
