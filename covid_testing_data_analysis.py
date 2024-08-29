@@ -4,7 +4,7 @@ from datetime import date, datetime, timedelta
 import warnings
 
 # Function to fetch COVID-19 testing data from the specified API
-def fetch_testing_data(api_url, cutoff_date):  
+def fetch_covid_testing_data(api_url, cutoff_date):  
     print(f"\nFetching data from the API until the date {cutoff_date}. Please wait...")
     page = 1
     all_test_data = []
@@ -165,7 +165,7 @@ def main():
             return
         
         # Fetch data from the API
-        full_test_data = fetch_testing_data(base_url, target_date)
+        full_test_data = fetch_covid_testing_data(base_url, target_date)
         
         # Generate the report
         report = generate_report(full_test_data, date.fromisoformat(target_date))
