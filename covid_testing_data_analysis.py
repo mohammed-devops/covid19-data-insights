@@ -4,8 +4,8 @@ from datetime import date, datetime, timedelta
 import warnings
 
 # Function to fetch COVID-19 testing data from the specified API
-def fetch_testing_data(api_url, cutoff_date):  
-    print(f"\nFetching data from the API until the date {cutoff_date}. Please wait...")
+def fetch_covid_testing_data(api_url, cutoff_date):  
+    print(f"\nFetching Covid testing data from the API until the date {cutoff_date}. Please wait...")
     page = 1
     all_test_data = []
     
@@ -102,7 +102,7 @@ def get_top_positivity_rate_states(test_data, cutoff_date):
         state_data['date'] = pd.to_datetime(state_data['date']).dt.strftime('%Y-%m-%d')
         state_data = state_data[(state_data['date'] >= start_date_str) & (state_data['date'] <= end_date_str)]
         
-        total_tests = state_data['total_results_reported'].sum()
+        total_tests = pd.to_numeric(state_data['total_results_reported'].sum(), errors='coerce')
         positive_tests = state_data[state_data['overall_outcome'] == 'Positive']['total_results_reported'].values
         positive_tests_sum = pd.to_numeric(positive_tests, errors='coerce').sum()
         
@@ -164,7 +164,7 @@ def main():
             return
         
         # Fetch data from the API
-        full_test_data = fetch_testing_data(base_url, target_date)
+        full_test_data = fetch_covid_testing_data(base_url, target_date)
         
         # Generate the report
         report = generate_report(full_test_data, date.fromisoformat(target_date))
