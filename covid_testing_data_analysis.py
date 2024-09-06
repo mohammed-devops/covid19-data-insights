@@ -105,8 +105,9 @@ def get_top_positivity_rate_states(test_data, cutoff_date):
         
         state_data['date'] = pd.to_datetime(state_data['date']).dt.strftime('%Y-%m-%d')
         state_data = state_data[(state_data['date'] >= start_date_str) & (state_data['date'] <= end_date_str)]
-        
-        total_tests = pd.to_numeric(state_data['total_results_reported'].sum(), errors='coerce')
+
+        total_results = pd.to_numeric(state_data['total_results_reported'], errors='coerce')
+        total_tests = int(total_results.sum())
         positive_tests = state_data[state_data['overall_outcome'] == 'Positive']['total_results_reported'].values
         positive_tests_sum = pd.to_numeric(positive_tests, errors='coerce').sum()
         
