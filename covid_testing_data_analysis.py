@@ -41,15 +41,15 @@ def calculate_total_pcr_tests(test_data, cutoff_date):
     # Convert the cutoff_date to a string with the format YYYY-MM-DD
     cutoff_date_str = datetime.strptime(cutoff_date, '%Y-%m-%d').strftime('%Y-%m-%d')
     print("\nCalculating the Total PCR Tests...")
-    
     df = pd.DataFrame(test_data)
-    total_pcr_tests = 0
-
-    # Sum PCR tests based on available fields
-    for _, record in df.iterrows():
-        record_date = record.get('date', '')
-        if record_date <= cutoff_date_str:
-            total_pcr_tests += int(record.get('total_results_reported', 0))
+    
+    # Convert total_results_reported to numeric values
+    df['total_results_reported'] = pd.to_numeric(df['total_results_reported'], errors='coerce')  
+    
+    # Filter the DataFrame for records with date less than or equal to cutoff_date 
+    filtered_data = df[df['date'] <= cutoff_date_str]
+    
+    total_pcr_tests = filtered_data['total_results_reported'].sum()
 
     return total_pcr_tests
 
